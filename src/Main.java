@@ -12,19 +12,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		String[][] matrix = 
-				{ 
-				{ "o","o","o","o","|","|","|","|"}, 
-				{"|","|","|","|","o","o","o","o"}, 
-				{"-","-","-",".","-","-","-","-"}, 
-				{"o","o","o","o","|","o","o","o"}, 
-				{"|","o","o","o","o","|","o","o"}, 
-				{"o","|","o","o","o","o","|","o"}, 
-				{"o","o","|","o","o","o","o","|"}, 
-				{"o","o","o","|","o","o","o","o" } 
-				};
+		String s = "a2[bc]d3[2[e]]f";
 
-		System.out.println(DailyChallenges.matrixToDecimal(matrix));
+		System.out.println(Challenges.decodeString(s));
 
 	}
 
