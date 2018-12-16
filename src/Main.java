@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 import codesignal.tasks.dahanschuster.*;
 
 @SuppressWarnings("unused")
@@ -12,9 +14,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		String s = "a2[bc]d3[2[e]]f";
+		int[] scores = {75, 81, 75, 90};
 
-		System.out.println(Challenges.decodeString(s));
+		System.out.println(Arrays.toString(DailyChallenges.modeScores(scores)));
 
 	}
 

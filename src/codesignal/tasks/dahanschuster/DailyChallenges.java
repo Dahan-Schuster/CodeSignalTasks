@@ -1,7 +1,5 @@
 package codesignal.tasks.dahanschuster;
 
-import java.util.ArrayList;
-
 public class DailyChallenges {
 
 	/**
@@ -161,42 +159,110 @@ public class DailyChallenges {
 		double output = 0.0;
 		double value = 0;
 		int commaIndex = 0;
-		
 
 		for (int h = 0; h < matrix[0].length; h++) {
 			if (matrix[2][h].equals(".")) {
 				commaIndex = h;
 			}
 		}
-		
+
 		for (int i = 0; i < matrix[0].length; i++) {
 			if (matrix[0][i].equals("|")) {
 				value += 5;
 			}
-			
+
 			for (int j = 3; j < matrix.length; j++) {
 				if (matrix[j][i].equals("|")) {
 					value += j - 3;
 				}
 			}
-			
+
 			value = (value * (Math.pow(10, (commaIndex - i))));
-			
+
 			output += value;
 			value = 0;
 		}
 		return output;
 	}
 
+	/**
+	 * You're almost finished your first semester at computer school - the only
+	 * thing left is to write the exam for your data structures course!
+	 * 
+	 * To get a better idea of what you need to study, you'd like to see where you
+	 * struggled the most. So your goal is to write an algorithm that shows what
+	 * your grade was at each point in time throughout the course.
+	 * 
+	 * Your instructor's marking philosophy is that they only care about
+	 * consistency, so they'll be judging your performance according to your mode
+	 * mark in the course (based on all assignments and tests).
+	 * 
+	 * Given scores, an array of integers representing all test and assignment
+	 * scores, your task is to return an array of integers where output[i]
+	 * represents the mode grade of all marks up to (and including) scores[i]. Your
+	 * instructor is a generous marker, so if there's a tie for the mode, your grade
+	 * is the highest among them.
+	 * 
+	 * @Example
+	 * 
+	 * 			For scores = [75, 81, 75, 90] the output should be
+	 *          modeScores(scores) = [75, 81, 75, 75].
+	 * 
+	 *          After each score is entered, the mode is recalculated as follows:
+	 * 
+	 *          For [75], the mode is 75 since it's the only element. For [75, 81],
+	 *          the mode is 81 since it's greater than 75. For [75, 81, 75], the
+	 *          mode is 75 (most frequent element). For [75, 81, 75, 90], the mode
+	 *          is 75 (still the most frequent element). Input / Output
+	 * 
+	 *          [execution time limit] 3 seconds (java)
+	 * 
+	 * @Input array.integer scores
+	 * 
+	 *        An array of integers representing your test and assignment grades from
+	 *        throughout the course (in chronological order).
+	 * 
+	 *        Guaranteed constraints: 0 ≤ scores.length ≤ 5 · 104 0 ≤ scores[i] ≤
+	 *        106
+	 * 
+	 * @Output array.integer
+	 * 
+	 *         An array of integers where output[i] represents the mode score in the
+	 *         course, up to and including scores[i].
+	 */
+
+	public static int[] modeScores(int[] scores) {
+		int[] output = new int[scores.length];
+		int mode = scores[0];
+		int count = 0;
+		int modeCount = 0;
+		for (int i = 0; i < output.length; i++) {
+			for (int j = 0; j <= i; j++) if (scores[i] == scores[j]) count++;
+			
+			if ((scores[i] > mode && count >= modeCount) || count > modeCount) {
+				mode = scores[i];
+				modeCount = count;
+			}
+			output[i] = mode;
+			count = 0;
+		}
+		return output;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
+/* 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

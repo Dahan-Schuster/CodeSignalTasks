@@ -38,7 +38,7 @@ public class Challenges {
 	 *        the given string. Guaranteed constraints: 0 ≤ s.length ≤ 80.
 	 * 
 	 */
-	public static String decodeString(String s /*Let's suppose the input is "a2[bc]d3[2[e]]f" */) {
+	public static String decodeString(String s) {
 		int firstBracketIndex = -1;
 		int lastBracketIndex = -1;
 		
@@ -64,33 +64,12 @@ public class Challenges {
 			String lettersToRepeat = s.substring(firstBracketIndex+1, lastBracketIndex);
 			
 			String rightString = s.substring(lastBracketIndex+1);
-			
-			
 			s = leftString;
-			System.out.println("Leftstring: "+leftString);
-			System.out.println("RightString: "+rightString);
 			for (int k = 0; k < multiply; k++) {
 				s += lettersToRepeat;
 			}
 			s += rightString;
-			
-			System.out.println("");
 		}
 		return s;
 	}
 }
-/*
- * 
- * 
- * 
- * 
- * 
- * Just to move up the code on the screen :p
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */
