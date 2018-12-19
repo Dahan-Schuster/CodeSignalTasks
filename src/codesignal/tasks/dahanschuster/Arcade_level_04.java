@@ -2,10 +2,178 @@ package codesignal.tasks.dahanschuster;
 
 public class Arcade_level_04 {
 
-	public static boolean launchSequenceChecker(String[] systemNames, int[] stepNumbers) {
+	/**
+	 * Several people are standing in a row and need to be divided into two teams.
+	 * The first person goes into team 1, the second goes into team 2, the third
+	 * goes into team 1 again, the fourth into team 2, and so on.
+	 * 
+	 * You are given an array of positive integers - the weights of the people.
+	 * Return an array of two integers, where the first element is the total weight
+	 * of team 1, and the second element is the total weight of team 2 after the
+	 * division is complete.
+	 * 
+	 * @Example
+	 * 
+	 * 			For a = [50, 60, 60, 45, 70], the output should be
+	 *          alternatingSums(a) = [180, 105].
+	 * 
+	 * @InputOutput
+	 * 
+	 * 				[execution time limit] 3 seconds (java)
+	 * 
+	 * @Input array.integer a
+	 * 
+	 *        Guaranteed constraints: 1 ≤ a.length ≤ 105, 45 ≤ a[i] ≤ 100.
+	 * 
+	 * @Output array.integer
+	 * 
+	 */
+	public static int[] alternatingSums(int[] a) {
+		int[] output = new int[2];
 
-		
-
-		return true;
+		for (int i = 0; i < a.length; i++) {
+			if (i % 2 == 0)
+				output[0] += a[i];
+			else
+				output[1] += a[i];
+		}
+		return output;
 	}
+
+	/**
+	 * Given a rectangular matrix of characters, add a border of asterisks(*) to it.
+	 * 
+	 * @Example
+	 * 
+	 * 			For
+	 * 
+	 *          picture = ["abc", "ded"] the output should be
+	 * 
+	 *          addBorder(picture) = ["*****", "*abc*", "*ded*", "*****"]
+	 *          Input/Output
+	 * 
+	 *          [execution time limit] 3 seconds (java)
+	 * 
+	 * @Input array.string picture
+	 * 
+	 *        A non-empty array of non-empty equal-length strings.
+	 * 
+	 *        Guaranteed constraints: 1 ≤ picture.length ≤ 100, 1 ≤
+	 *        picture[i].length ≤ 100.
+	 * 
+	 * @Output array.string
+	 * 
+	 *         The same matrix of characters, framed with a border of asterisks of
+	 *         width 1.
+	 * 
+	 */
+	public static String[] addBorder(String[] picture) {
+		String[] newPicture = new String[picture.length + 2];
+
+		newPicture[0] = "*" + picture[0].replaceAll(".", "*") + "*";
+		newPicture[newPicture.length - 1] = "*" + picture[0].replaceAll(".", "*") + "*";
+
+		for (int i = 1; i < newPicture.length - 1; i++) {
+			newPicture[i] = "*" + picture[i - 1] + "*";
+		}
+		return newPicture;
+	}
+
+	/**
+	 * Two arrays are called similar if one can be obtained from another by swapping
+	 * at most one pair of elements in one of the arrays.
+	 * 
+	 * Given two arrays a and b, check whether they are similar.
+	 * 
+	 * @Example
+	 * 
+	 * 			For a = [1, 2, 3] and b = [1, 2, 3], the output should be
+	 *          areSimilar(a, b) = true.
+	 * 
+	 *          The arrays are equal, no need to swap any elements.
+	 * 
+	 *          For a = [1, 2, 3] and b = [2, 1, 3], the output should be
+	 *          areSimilar(a, b) = true.
+	 * 
+	 *          We can obtain b from a by swapping 2 and 1 in b.
+	 * 
+	 *          For a = [1, 2, 2] and b = [2, 1, 1], the output should be
+	 *          areSimilar(a, b) = false.
+	 * 
+	 *          Any swap of any two elements either in a or in b won't make a and b
+	 *          equal.
+	 * 
+	 * @InputOutput
+	 * 
+	 * 				[execution time limit] 3 seconds (java)
+	 * 
+	 *              [input] array.integer a
+	 * 
+	 *              Array of integers.
+	 * 
+	 *              Guaranteed constraints: 3 ≤ a.length ≤ 105, 1 ≤ a[i] ≤ 1000.
+	 * 
+	 * @Input array.integer b
+	 * 
+	 *        Array of integers of the same length as a.
+	 * 
+	 *        Guaranteed constraints: b.length = a.length, 1 ≤ b[i] ≤ 1000.
+	 * 
+	 * @Output boolean
+	 * 
+	 *         true if a and b are similar, false otherwise.
+	 * 
+	 */
+	public static boolean areSimilar(int[] a, int[] b) {
+		int aDifferent = -1; // 1 <= a[n] <= 1000 
+		int bDifferent = -1; // 1 <= b[n] <= 1000
+		boolean output = true;
+		int differenceFoundCount = 0;
+		
+		for (int k = 0; k < a.length; k++) {
+			System.out.println("Loop nº " + (k+1) + ":");
+			System.out.println("");
+			if (a[k] != b[k]) {
+
+				differenceFoundCount++;
+				
+				System.out.println(a[k] + " != " + b[k]);
+				System.out.println("Difference found: " + differenceFoundCount);
+				
+				if (a[k] == bDifferent && b[k] == aDifferent) {
+					output = true;
+				} else if (differenceFoundCount > 1) return false;
+				
+				aDifferent = a[k];
+				bDifferent = b[k];
+				
+				System.out.println("a different = " + aDifferent);
+				System.out.println("b different = " + bDifferent);
+			}
+		}
+		return output;
+	}
+
 }
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

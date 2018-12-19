@@ -1,10 +1,81 @@
 package codesignal.tasks.dahanschuster;
 
+import java.util.Arrays;
+
 public class DailyChallenges {
 
 	/**
+	 * Your family members live all around the world, and you're all planning to get
+	 * together for the holidays!
 	 * 
+	 * You'd like to find the least costly way to congregate at one location, so
+	 * you're trying to decide who should be the host. You're given an adjacency
+	 * matrix travelCosts, where travelCosts[i][j] represents the cost for family
+	 * member i to visit family member j. If it's not possible for i to visit j,
+	 * then travelCosts[i][j] will be equal to -1.
 	 * 
+	 * Your task is to find the minimum total cost for everyone to get together (or
+	 * return -1 if it's not possible).
+	 * 
+	 * @Note
+	 * 
+	 * All travel is direct; we won't consider any layovers or transfers. If
+	 * travelCosts[i][j] = -1 then i won't be able to visit j, even if there's
+	 * another index k available such that travelCosts[i][k] ≠ -1 and
+	 * travelCosts[k][j] ≠ -1. 
+	 * 
+	 * @Example
+	 * 
+	 * For
+	 * 
+	 * travelCost = [[ 0, 5, 0], [-1, 0,12], [ 0, 2, 0]] the output should be
+	 * whereToGather(travelCosts) = 7.
+	 * 
+	 * It's not possible for family member 1 to visit family member 0, so 0 can't be
+	 * the host. If family member 1 is hosting, then it costs 5 for guest 0 to
+	 * attend, and 2 for guest 2 to attend. So the total cost is 7. If family member
+	 * 2 is hosting, then 0 can get there for free, but it costs 12 for guest 1 to
+	 * attend. So the total cost is 12, which is not as good as 7. So family member
+	 * 1 should host the event, for a total cost of 7.
+	 * 
+	 * @InputOutput
+	 * 
+	 * [execution time limit] 3 seconds (java)
+	 * 
+	 * @Input array.array.integer travelCosts
+	 * 
+	 * A square matrix of integers, where travelCosts[guest][host] represents the
+	 * cost for guest to visit host. A -1 means guest cannot visit host. It's
+	 * guaranteed that it doesn't cost anything for a family member to visit
+	 * themselves.
+	 * 
+	 * Guaranteed constraints: 2 ≤ travelCosts.length ≤ 250 travelCosts.length =
+	 * travelCosts[i].length -1 ≤ travelCosts[i][j] ≤ 106 travelCosts[i][i] = 0
+	 * 
+	 * @Output integer
+	 * 
+	 * An integer representing the total minimum cost for everyone to gather
+	 * together (or -1 if it's not possible).
+	 * 
+	 * @TaskAuthor zero_cool
+	 * @CodeSignalProfile https://app.codesignal.com/profile/zero_cool
+	 */
+	public static int whereToGather(int[][] travelCosts) {
+		int[] sum = new int[travelCosts[0].length];
+		for (int i = 0; i < travelCosts.length; i++) {
+			for (int j = 0; j < travelCosts[0].length; j++) {
+				if (travelCosts[i][j] == -1) sum[j] = Integer.MAX_VALUE;
+				if (sum[j] != Integer.MAX_VALUE) sum[j] +=  travelCosts[i][j];
+			}
+		}
+		Arrays.sort(sum);
+		if (sum[0] == Integer.MAX_VALUE) return -1;
+		return sum[0];
+	}
+
+	
+	
+	/**
 	 * The Si Stebbins stack is a way to stack playing cards such that each card
 	 * alternates suit in the repeating order [Clubs, Hearts, Spades, Diamonds] (not
 	 * necessarily starting with Clubs), and has a numerical value three greater
@@ -237,8 +308,10 @@ public class DailyChallenges {
 		int count = 0;
 		int modeCount = 0;
 		for (int i = 0; i < output.length; i++) {
-			for (int j = 0; j <= i; j++) if (scores[i] == scores[j]) count++;
-			
+			for (int j = 0; j <= i; j++)
+				if (scores[i] == scores[j])
+					count++;
+
 			if ((scores[i] > mode && count >= modeCount) || count > modeCount) {
 				mode = scores[i];
 				modeCount = count;
