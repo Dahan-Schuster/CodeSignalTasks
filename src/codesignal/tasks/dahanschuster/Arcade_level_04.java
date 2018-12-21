@@ -1,5 +1,7 @@
 package codesignal.tasks.dahanschuster;
 
+import java.util.Arrays;
+
 public class Arcade_level_04 {
 
 	/**
@@ -125,33 +127,123 @@ public class Arcade_level_04 {
 	 * 
 	 */
 	public static boolean areSimilar(int[] a, int[] b) {
-		int aDifferent = -1; // 1 <= a[n] <= 1000 
+		int aDifferent = -1; // 1 <= a[n] <= 1000
 		int bDifferent = -1; // 1 <= b[n] <= 1000
 		boolean output = true;
 		int differenceFoundCount = 0;
-		
+
 		for (int k = 0; k < a.length; k++) {
-			System.out.println("Loop nº " + (k+1) + ":");
+			System.out.println("Loop nº " + (k + 1) + ":");
 			System.out.println("");
 			if (a[k] != b[k]) {
 
 				differenceFoundCount++;
-				
+
 				System.out.println(a[k] + " != " + b[k]);
 				System.out.println("Difference found: " + differenceFoundCount);
-				
+
 				if (a[k] == bDifferent && b[k] == aDifferent) {
 					output = true;
-				} else if (differenceFoundCount > 1) return false;
-				
+				} else if (differenceFoundCount > 1)
+					return false;
+
 				aDifferent = a[k];
 				bDifferent = b[k];
-				
+
 				System.out.println("a different = " + aDifferent);
 				System.out.println("b different = " + bDifferent);
 			}
 		}
 		return output;
+	}
+
+	/**
+	 * You are given an array of integers. On each move you are allowed to increase
+	 * exactly one of its element by one. Find the minimal number of moves required
+	 * to obtain a strictly increasing sequence from the input.
+	 * 
+	 * @Example
+	 * 
+	 * 			For inputArray = [1, 1, 1], the output should be
+	 *          arrayChange(inputArray) = 3.
+	 * 
+	 * @InputOutput
+	 * 
+	 * 				[execution time limit] 3 seconds (java)
+	 * 
+	 * @input array.integer inputArray
+	 * 
+	 *        Guaranteed constraints: 3 ≤ inputArray.length ≤ 105, -105 ≤
+	 *        inputArray[i] ≤ 105.
+	 * 
+	 * @output integer
+	 * 
+	 *         The minimal number of moves needed to obtain a strictly increasing
+	 *         sequence from inputArray. It's guaranteed that for the given test
+	 *         cases the answer always fits signed 32-bit integer type.
+	 * 
+	 */
+	public static int arrayChange(int[] inputArray) {
+		int total = 0;
+		for (int i = 0; i < inputArray.length - 1; i++) {
+			if (inputArray[(i + 1)] <= inputArray[i]) {
+				inputArray[(i + 1)]++;
+				total++;
+				i--;
+			}
+		}
+		return total;
+	}
+
+	/**
+	 * Given a string, find out if its characters can be rearranged to form a
+	 * palindrome.
+	 * 
+	 * @Example
+	 * 
+	 * 			For inputString = "aabb", the output should be
+	 *          palindromeRearranging(inputString) = true.
+	 * 
+	 *          We can rearrange "aabb" to make "abba", which is a palindrome.
+	 * 
+	 * @InputOutput
+	 * 
+	 * 				[execution time limit] 3 seconds (java)
+	 * 
+	 * @input string inputString
+	 * 
+	 *        A string consisting of lowercase English letters.
+	 * 
+	 *        Guaranteed constraints: 1 ≤ inputString.length ≤ 50.
+	 * 
+	 * @output boolean
+	 * 
+	 *         true if the characters of the inputString can be rearranged to form a
+	 *         palindrome, false otherwise.
+	 */
+	public static boolean palindromeRearranging(String inputString) {
+		inputString += "~"; // Confused about the meaning of that tilde? Visit
+							// http://support.ecisolutions.com/doc-ddms/help/reportsmenu/ascii_sort_order_chart.htm
+							// for an explain
+		String differentLetter = "", iLetters = "";
+		char[] letters = inputString.toCharArray();
+		Arrays.sort(letters);
+
+		for (int i = 0; i < letters.length - 1; i++) {
+			if (letters[i] != letters[(i + 1)]) {
+				iLetters = inputString.replaceAll("[^" + letters[i] + "]", "");
+				if (iLetters.length() % 2 != 0) {
+					if (!differentLetter.equals("" + letters[i])) {
+						if (!differentLetter.isEmpty())
+							return false;
+
+						differentLetter += letters[i];
+					} else
+						differentLetter = "";
+				}
+			}
+		}
+		return true;
 	}
 
 }

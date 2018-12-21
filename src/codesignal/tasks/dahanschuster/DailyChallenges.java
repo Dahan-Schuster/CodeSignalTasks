@@ -5,6 +5,81 @@ import java.util.Arrays;
 public class DailyChallenges {
 
 	/**
+	 * During the holiday season you go through a lot of candles! You burn many
+	 * candles of various sizes, represented by the array candleSizes.
+	 * 
+	 * You prefer big candles, so you always light the biggest candle available at
+	 * the time.
+	 * 
+	 * For every n candles you burn, you can use the remaining wax to create a new
+	 * candle! The size of this new candle will depend on the sizes of the n candles
+	 * you got the wax from. More specifically, the size of the new candle will be
+	 * equal to the sum of the sizes of the n candles, divided by n + 1 (rounded
+	 * down).
+	 * 
+	 * Given candleSizes and n, your task is to find the sum of the sizes of all
+	 * candles burned!
+	 * 
+	 * Notes:
+	 * 
+	 * If the size of the new candle would be rounded down to zero, there isn't
+	 * enough wax to make a new candle. You can't make a new candle with fewer than
+	 * n leftovers. Example
+	 * 
+	 * For candleSizes = [2, 181, 32, 188, 188] and n = 3, the output should be
+	 * burningCandles(candleSizes, n) = 773.
+	 * 
+	 * There's a tie for biggest candle, so you'll burn one of the 188 ones. The
+	 * total is now 188 and the remaining candles are [2, 181, 32, 188]. You can now
+	 * burn the other 188 candle. The total is now 376 and the remaining candles are
+	 * [2, 181, 32]. The next biggest candle is 181, and since you've now burned 3
+	 * (n) candles, you can make a new one! It will have a size of floor((188 + 188
+	 * + 181) / 4) = 139. So the total is now 557 and the remaining candles are [2,
+	 * 32, 139]. You'll burn the 139 candle next, since it's by far the biggest. The
+	 * total is now 696 and the remaining candles are [2, 32]. The next candle will
+	 * be the 32, so the total is now 728, and only [2] remains. You burn the 2
+	 * next, and it seems like we're all out of candles now, but since you've now
+	 * burned another 3 candles, you can make another new one! This one will have a
+	 * size of floor((139 + 32 + 2) / 4) = 43. So the total is now 730 with [43]
+	 * remaining. You now burn the final candle (43) for a total of 773. Input /
+	 * Output
+	 * 
+	 * [execution time limit] 3 seconds (java)
+	 * 
+	 * [input] array.integer candleSizes
+	 * 
+	 * An array of integers representing the sizes of each of your candles. Not in
+	 * any particular order.
+	 * 
+	 * Guaranteed constraints: 0 ≤ candleSizes.length ≤ 104 1 ≤ candleSizes[i] ≤ 106
+	 * 
+	 * [input] integer n
+	 * 
+	 * An integer representing the number of candles you need to burn in order to be
+	 * able to create a new one from the leftover wax.
+	 * 
+	 * Guaranteed constraints: 2 ≤ n ≤ 104
+	 * 
+	 * [output] integer
+	 * 
+	 * An integer representing the sum of the sizes of all candles burned (including
+	 * candles you created from leftovers).
+	 * 
+	 */
+	public static int burningCandles(int[] candleSizes, int n) {
+		//while (candleSizes.length > 0) {
+			//for ()
+			int[] newCandleSizes = new int[candleSizes.length-1];
+			Arrays.sort(candleSizes);
+			
+		//}
+		return 0;
+		
+	}
+
+	
+
+	/**
 	 * Your family members live all around the world, and you're all planning to get
 	 * together for the holidays!
 	 * 
@@ -19,43 +94,45 @@ public class DailyChallenges {
 	 * 
 	 * @Note
 	 * 
-	 * All travel is direct; we won't consider any layovers or transfers. If
-	 * travelCosts[i][j] = -1 then i won't be able to visit j, even if there's
-	 * another index k available such that travelCosts[i][k] ≠ -1 and
-	 * travelCosts[k][j] ≠ -1. 
+	 * 		All travel is direct; we won't consider any layovers or transfers. If
+	 *       travelCosts[i][j] = -1 then i won't be able to visit j, even if there's
+	 *       another index k available such that travelCosts[i][k] ≠ -1 and
+	 *       travelCosts[k][j] ≠ -1.
 	 * 
 	 * @Example
 	 * 
-	 * For
+	 * 			For
 	 * 
-	 * travelCost = [[ 0, 5, 0], [-1, 0,12], [ 0, 2, 0]] the output should be
-	 * whereToGather(travelCosts) = 7.
+	 *          travelCost = [[ 0, 5, 0], [-1, 0,12], [ 0, 2, 0]] the output should
+	 *          be whereToGather(travelCosts) = 7.
 	 * 
-	 * It's not possible for family member 1 to visit family member 0, so 0 can't be
-	 * the host. If family member 1 is hosting, then it costs 5 for guest 0 to
-	 * attend, and 2 for guest 2 to attend. So the total cost is 7. If family member
-	 * 2 is hosting, then 0 can get there for free, but it costs 12 for guest 1 to
-	 * attend. So the total cost is 12, which is not as good as 7. So family member
-	 * 1 should host the event, for a total cost of 7.
+	 *          It's not possible for family member 1 to visit family member 0, so 0
+	 *          can't be the host. If family member 1 is hosting, then it costs 5
+	 *          for guest 0 to attend, and 2 for guest 2 to attend. So the total
+	 *          cost is 7. If family member 2 is hosting, then 0 can get there for
+	 *          free, but it costs 12 for guest 1 to attend. So the total cost is
+	 *          12, which is not as good as 7. So family member 1 should host the
+	 *          event, for a total cost of 7.
 	 * 
 	 * @InputOutput
 	 * 
-	 * [execution time limit] 3 seconds (java)
+	 * 				[execution time limit] 3 seconds (java)
 	 * 
 	 * @Input array.array.integer travelCosts
 	 * 
-	 * A square matrix of integers, where travelCosts[guest][host] represents the
-	 * cost for guest to visit host. A -1 means guest cannot visit host. It's
-	 * guaranteed that it doesn't cost anything for a family member to visit
-	 * themselves.
+	 *        A square matrix of integers, where travelCosts[guest][host] represents
+	 *        the cost for guest to visit host. A -1 means guest cannot visit host.
+	 *        It's guaranteed that it doesn't cost anything for a family member to
+	 *        visit themselves.
 	 * 
-	 * Guaranteed constraints: 2 ≤ travelCosts.length ≤ 250 travelCosts.length =
-	 * travelCosts[i].length -1 ≤ travelCosts[i][j] ≤ 106 travelCosts[i][i] = 0
+	 *        Guaranteed constraints: 2 ≤ travelCosts.length ≤ 250
+	 *        travelCosts.length = travelCosts[i].length -1 ≤ travelCosts[i][j] ≤
+	 *        106 travelCosts[i][i] = 0
 	 * 
 	 * @Output integer
 	 * 
-	 * An integer representing the total minimum cost for everyone to gather
-	 * together (or -1 if it's not possible).
+	 *         An integer representing the total minimum cost for everyone to gather
+	 *         together (or -1 if it's not possible).
 	 * 
 	 * @TaskAuthor zero_cool
 	 * @CodeSignalProfile https://app.codesignal.com/profile/zero_cool
@@ -64,17 +141,18 @@ public class DailyChallenges {
 		int[] sum = new int[travelCosts[0].length];
 		for (int i = 0; i < travelCosts.length; i++) {
 			for (int j = 0; j < travelCosts[0].length; j++) {
-				if (travelCosts[i][j] == -1) sum[j] = Integer.MAX_VALUE;
-				if (sum[j] != Integer.MAX_VALUE) sum[j] +=  travelCosts[i][j];
+				if (travelCosts[i][j] == -1)
+					sum[j] = Integer.MAX_VALUE;
+				if (sum[j] != Integer.MAX_VALUE)
+					sum[j] += travelCosts[i][j];
 			}
 		}
 		Arrays.sort(sum);
-		if (sum[0] == Integer.MAX_VALUE) return -1;
+		if (sum[0] == Integer.MAX_VALUE)
+			return -1;
 		return sum[0];
 	}
 
-	
-	
 	/**
 	 * The Si Stebbins stack is a way to stack playing cards such that each card
 	 * alternates suit in the repeating order [Clubs, Hearts, Spades, Diamonds] (not
