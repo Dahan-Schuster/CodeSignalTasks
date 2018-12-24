@@ -14,9 +14,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		String inputString = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbccccaaaaaaaaaaaaa";
+		String inputString = "1.300.1.0";
 
-		System.out.println(Arcade_level_04.palindromeRearranging(inputString));
+		System.out.println(Arcade_level_05.isIPv4Address(inputString));
 
 
 	}

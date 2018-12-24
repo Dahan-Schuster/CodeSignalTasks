@@ -1,5 +1,7 @@
 package codesignal.tasks.dahanschuster;
 
+import java.util.regex.Pattern;
+
 public class Arcade_level_05 {
 
 	/**
@@ -99,5 +101,11 @@ public class Arcade_level_05 {
 		
 		return MaximalAdjacentDifference;
 	}
+	
+	
+	public static boolean isIPv4Address(String inputString) {
+		return Pattern.compile("^[((1?[0-9]?[0-9]+)|(2?[0-5]?[0-5]+))]\\.((1?[0-9]?[0-9]+)|(2?[0-5]?[0-5]+))\\.((1?[0-9]?[0-9]+)|(2?[0-5]?[0-5]+))\\.((1?[0-9]?[0-9]+)|(2?[0-5]?[0-5]+))$").matcher(inputString).matches();
+	}
+
 
 }
